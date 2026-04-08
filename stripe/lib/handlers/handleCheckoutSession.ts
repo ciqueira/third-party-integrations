@@ -38,8 +38,8 @@ export async function handleCheckoutSessionFlow({ event, productId, client }: { 
     // 3. Sincronização com MailerLite (Apenas se a licença foi criada com sucesso)
     if (result.status === 201 && result.data?.license?.key) {
         try {
-            const mailerliteApiKey = process.env.MAILERLITE_API_KEY;
-            const mailerliteGroupId = process.env.MAILERLITE_GROUP_ID;
+            const mailerliteApiKey = process.env['MAILERLITE_API_KEY'];
+            const mailerliteGroupId = process.env['MAILERLITE_GROUP_ID'];
 
             if (mailerliteApiKey && mailerliteGroupId) {
                 await fetch('https://connect.mailerlite.com/api/subscribers', {
